@@ -7,7 +7,7 @@ import type {
     LoginParamsType,
     LoginResponseModel,
     UserInfoResponseModel,
-  } from './types'
+  } from './types.ts'
 
 //统一管理用户相关的接口
 //通过枚举类型来表示常量

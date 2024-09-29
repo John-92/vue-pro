@@ -9,7 +9,7 @@
 
             <el-scrollbar class="scrollbar">
                  <!-- 菜单组件 -->
-                <el-menu background-color="red">
+                <el-menu background-color="red" :collapse=true>
                     <!-- 将动态路由传给Menu组件 ，以父组件的形式传给子组件-->
                     menu<Menu :menuList="userStore.menuRouters"></Menu>
                 </el-menu>
@@ -19,17 +19,21 @@
             
         </div>
         <div class="layout_tabbar">456</div>
-        <div class="layout_main">789</div>
+        <div class="layout_main">一级路由展示的内容
+
+            <Main></Main>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
 
 import Logo from "@/layout/logo/index.vue";
 import Menu from "@/layout/menu/index.vue";
+import Main from "@/layout/main/index.vue";
 
 // 获取小仓库的用户数据
 import useUserStore from "@/store/modules/user";
-import { Plus } from "@element-plus/icons-vue";
+
 let userStore=useUserStore()
 // console.log("userStore---------->",userStore)
 
