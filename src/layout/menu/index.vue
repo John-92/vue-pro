@@ -4,15 +4,15 @@
    <template v-for="(item,index) in menuList" :key="item.path">
       <template v-if="!item.children" >
         <el-menu-item  :index="item.path" v-if="!item.meta.hidden" @click="goRouter">
+
+                   <el-icon>
+                     <component :is="item.meta.icon"></component>
+                  </el-icon>
             <template #title>
+                
                   <!-- <span> 没有----{{ item.meta.icon }}</span> -->
                   
-                  <el-icon>
-                    <!-- <Plus></Plus> -->
-                    <!-- <Minus></Minus> -->
-                     <component :is="item.meta.icon"></component>
-                     <!-- <component is="Plus"></component> -->
-                  </el-icon>
+                  
                   <!-- <Plus>ss</Plus> -->
                     <span>{{item.meta.title}}</span>
             </template>
@@ -26,11 +26,14 @@
           
             <template v-if="item.children && item.children.length==1">
                 <el-menu-item  :index="item.children[0].path" v-if="!item.meta.hidden" @click="goRouter" >
-                <template #title>
+                
                     <el-icon>
-                    <!-- <Plus></Plus> -->
+                    <!-- <Plus></Plus> icon组件：放置具体的组件-->
                      <component :is="item.children[0].meta.icon"></component>
                   </el-icon>
+                
+                    <template #title>
+                   
                         <span>{{item.children[0].meta.title}}</span>
                 </template>
             </el-menu-item>
@@ -43,8 +46,6 @@
                 <el-sub-menu v-if="item.children && item.children.length>1" :index="item.path">
                     <template #title>
                         <el-icon>
-                    <!-- <Plus></Plus> -->
-                    <!-- <Minus></Minus> -->
                      <component :is="item.meta.icon"></component>
                      <!-- <component is="Plus"></component> -->
                   </el-icon>

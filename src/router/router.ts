@@ -90,6 +90,7 @@ export const constantRouter: Array<RouteRecordRaw> = [
             path: '/acl',
             name: 'Acl',
             component: () => import('@/layout/index.vue'),
+            redirect:'/acl/user',
             meta: {
                 requiresAuth: true,
                 title:'权限管理',
@@ -137,6 +138,7 @@ export const constantRouter: Array<RouteRecordRaw> = [
         path: '/product',
         name: 'Product',
         component: () => import('@/layout/index.vue'),
+        redirect: '/product/sku',
         meta: {
             requiresAuth: true,
             title:'商品管理',
@@ -145,7 +147,7 @@ export const constantRouter: Array<RouteRecordRaw> = [
         },
         children:[
             {
-                path: '/sku',
+                path: '/product/sku',
                 name: 'Sku',
                 component: () => import('@/views/product/sku/index.vue'),
                 meta: {
@@ -156,7 +158,7 @@ export const constantRouter: Array<RouteRecordRaw> = [
                 }
             },
             {
-                path: '/spu',
+                path: '/product/spu',
                 name: 'Spu',
                 component: () => import('@/views/product/spu/index.vue'),
                 meta: {
@@ -167,7 +169,7 @@ export const constantRouter: Array<RouteRecordRaw> = [
                 }
             },
             {
-                path: '/attr',
+                path: '/product/attr',
                 name: 'Attr',
                 component: () => import('@/views/product/attr/index.vue'),
                 meta: {
@@ -178,7 +180,7 @@ export const constantRouter: Array<RouteRecordRaw> = [
                 }
             },
             {
-                path: '/trademark',
+                path: '/product/trademark',
                 name: 'Trademark',
                 component: () => import('@/views/product/trademark/index.vue'),
                 meta: {
