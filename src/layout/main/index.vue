@@ -15,6 +15,24 @@
 
 let flag = ref(true)
 import { nextTick, ref, watch } from 'vue'
+
+import useLayoutSettingStore from "@/store/settings";
+let LayoutSettingStore=useLayoutSettingStore()
+
+//监视仓库内部数据的变化，如果发生变化，则说明已经刷新按钮
+//()=>LayoutSettingStore.refresh表示监听LayoutSettingStore.refresh数据变化，第二个参数是变化的处理
+watch(()=>LayoutSettingStore.refresh,()=>{
+
+    //对组件进行重载
+    flag.value=false
+     //nextTick保证dom更新完毕后，再创建，相比于定时器更智能
+    nextTick(()=>{
+      flag.value=true
+    })
+
+
+})
+
 </script>
 <style scoped lang="scss" >
 

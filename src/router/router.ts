@@ -33,6 +33,7 @@ export const constantRouter: Array<RouteRecordRaw> = [
           hidden:false,
           icon:"Collection"
         },
+        redirect:'/home',
         children:[
             {
                 path: '/home',

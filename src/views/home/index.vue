@@ -5,7 +5,15 @@
 </template>
 <script setup lang="ts">
 
+import { onMounted } from "vue";
+import useUserStore from "@/store/modules/user";
+
+let userStore=useUserStore()
+//首页挂载后获取用户信息
+onMounted(()=>{
+    userStore.userInfo()
+})
 </script>
 <style >
     
-</style>
+</style> 

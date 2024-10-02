@@ -23,7 +23,7 @@
          <Tabbar></Tabbar>
 
         </div>
-        <div class="layout_main">一级路由展示的内容
+        <div class="layout_main" >一级路由展示的内容
 
             <Main></Main>
         </div>
@@ -35,6 +35,7 @@ import Logo from "@/layout/logo/index.vue";
 import Menu from "@/layout/menu/index.vue";
 import Main from "@/layout/main/index.vue";
 import Tabbar from "@/layout/tabbar/index.vue";
+import { watch } from "vue";
 
 
 // 获取小仓库的用户数据
@@ -48,6 +49,14 @@ console.log($route.path)
 
 import useLayoutSettingStore from "@/store/settings";
 let LayoutSettingStore=useLayoutSettingStore()
+
+//监视仓库内部数据的变化，如果发生变化，则说明已经刷新按钮
+watch(()=>LayoutSettingStore.refresh,()=>{
+
+    LayoutSettingStore
+
+})
+
 </script>
 <style scoped lang="scss" >
 // div{

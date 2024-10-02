@@ -1,46 +1,46 @@
 <template>
-    <div class="tabbar">
-        <!-- <h1>我是TABBAR组件</h1> -->
-        <div class="tabbar-left">
-           
-
-            <Breadcrumb></Breadcrumb>
-
-
-        </div>
+ 
+        
         <div class="tabbar-right">
 
-            <Setting></Setting>
-
-            <!-- <el-button size="small" icon="Refresh" circle @click="refreshCom"/>
+            <el-button size="small" icon="Refresh" circle @click="refreshCom"/>
             <el-button size="small" icon="FullScreen" circle @click="fullscreen"/>
             <el-button size="small" icon="Operation" circle />
+            <img :src="UserStore.avatar" style="width: 20px; height: 20px; margin:10px,10px">
            
             <el-dropdown style="margin-left:10px">
+
                 <span class="el-dropdown-link">
-                登录状态
+                {{ UserStore.username }}
                 <el-icon class="el-icon--right">
                     <arrow-down />
                 </el-icon>
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item>退出登录</el-dropdown-item>
+                        <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
                     
                     </el-dropdown-menu>
                 </template>
-        </el-dropdown> -->
+        </el-dropdown>
         </div>
   
-    </div>
+  
 </template>
-<script setup lang="ts">
+<script setup lang="ts" name="setting">
 
-import Breadcrumb from "@/layout/tabbar/breadcrumb/index.vue";
-import Setting from "@/layout/tabbar/setting/index.vue";
+
 
 import  useLayoutSettingStore  from "@/store/settings";
+import  useUserStore  from "@/store/modules/user";
+import { useRouter } from "vue-router";
 let LayoutSettingStore=useLayoutSettingStore()
+
+
+let UserStore=useUserStore();
+let $router=useRouter()
+
+
 
 // 属性组件的功能
 const refreshCom=()=>{
@@ -62,6 +62,14 @@ const fullscreen=()=>{
     }else{
         document.exitFullscreen()
     }
+}
+
+const logout=()=>{
+    //1.清空数据
+    UserStore.userLogout()
+    //2.重定向到登陆页面
+    $router.push({path:'/login'})
+
 }
 
 </script>

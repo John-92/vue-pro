@@ -4,5 +4,7 @@ import type { RouteRecordRaw } from "vue-router";
 export interface UserState{
     //没有登录时为null,登录时为token的string类型
     token:string|null; 
-    menuRouters:RouteRecordRaw[]
+    menuRouters:RouteRecordRaw[];
+    username:string,
+    avatar:string,
 }

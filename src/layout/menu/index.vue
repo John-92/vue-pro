@@ -22,8 +22,6 @@
            
 
             <!-- 只有一个子路由的场景，只展示里面的子路由 -->
-
-          
             <template v-if="item.children && item.children.length==1">
                 <el-menu-item  :index="item.children[0].path" v-if="!item.meta.hidden" @click="goRouter" >
                 
@@ -39,8 +37,6 @@
             </el-menu-item>
             </template>
            
-
-                
                 <!-- 有多个子路由的场景，通过递归方式 -->
                 
                 <el-sub-menu v-if="item.children && item.children.length>1" :index="item.path">
@@ -57,11 +53,9 @@
 
                 </el-sub-menu>
 
-            
-    
    </template>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" >
 // import { Plus } from '@element-plus/icons-vue';
 import { useRouter } from "vue-router";
 
@@ -76,7 +70,7 @@ const goRouter=(vc:any)=>{
 
 </script>
 
-<script lang="ts">
+<script lang="ts" name="Menu">
 // 因为setup默认情况下无法直接定义组件名，可以通过vue2方式进行声明
 export default{
     name:'Menu'

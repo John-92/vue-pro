@@ -41,7 +41,7 @@ import useUserStore from "@/store/modules/user";
 
 import { ElNotification } from "element-plus"; //el的消息提示框
 
-import { useRouter } from "vue-router";
+import { useRouter,useRoute } from "vue-router";
 import { getTime } from "@/utils/time";
 
 let userStore = useUserStore()
@@ -51,7 +51,12 @@ let loading = ref(false)
 
 let $router = useRouter()
 
+let $route=useRoute()
+
 let loginForms = ref()
+
+
+
 
 // 收集表单数据
 const loginForm = reactive({
@@ -61,7 +66,6 @@ const loginForm = reactive({
 
 //为什么不是通过函数来定义触发事件，而是变量const
 const login = async () => {
-
 
     // let result = loginForms.value.validate()
 
@@ -77,8 +81,10 @@ const login = async () => {
     try {
         // 保证登录成功
         await userStore.userLogin(loginForm)
+        //获取请求中携带的redirect参数，如果则会调整到该页面
+        let redirect:any=$route.query.redirect
         // 编程式导航调整到首页
-        $router.push('/');
+        $router.push({path:redirect||'/'});
         ElNotification({ //成功提示信息
             type: "success",
             message: "登录成功",

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { errorCodeType } from '@/utils/error-code-type';
 import { ElMessage, ElLoading } from 'element-plus';
+import  useUserStore  from "@/store/modules/user";
 
 // 创建axios实例
 const service = axios.create({
@@ -39,6 +40,16 @@ service.interceptors.request.use(config => {//config是请求对象
     showLoading()
     // 是否需要设置 token放在请求头
     // config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    let UserStore=useUserStore()
+    // console.log("usertoken------->",UserStore.token,"config.headers.token--",config.headers.token)
+
+    //在拦截器捕获token,保存到header中
+    if(UserStore.token){
+        
+        config.headers.token=UserStore.token
+    
+    }
+    
     // get请求映射params参数
     if (config.method === 'get' && config.params) {
         let url = config.url + '?';

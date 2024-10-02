@@ -9,3 +9,8 @@ export const GET_TOKEN = () => {
     //  localStorage.getItem("TOKEN")
     return localStorage.getItem("TOKEN")
 }
+
+export const REMOVE_TOKEN=()=>{
+    //将本地仓库的TOKEN数据清除
+    localStorage.removeItem('TOKEN')
+}
